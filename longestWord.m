@@ -14,3 +14,22 @@ function [result] = longestWord( inputFile )
 % print a descriptive error message and return the
 % value -1.
 %
+
+%Longestword:
+function longest = longestWord(inputFile)
+if exist(inputFile, 'file')
+words = strsplit(regexprep(fileread(inputFile), '[.,?'']', ' '));
+longest = '';
+maxLength = 0;
+for i = 1:length(words)
+wordLength = length(words{i});
+if wordLength > maxLength
+longest = words{i};
+maxLength = wordLength;
+end
+end
+else
+disp('File not found.')
+longest = -1;
+end
+end
